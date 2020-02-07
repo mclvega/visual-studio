@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="~/css/home.css">
+</head>
+<body>
+    <header>
+        <a href="@Url.Action("Login","Home")">
+            <img width="50" src="https://pngimage.net/wp-content/uploads/2018/05/cerrar-sesion-png-1.png" alt="Cerrar Sesion" />
+        </a>
+    <h1>Inicio Proveedores</h1>
+    </header>
+    <main>
+        <table align="center">
+            <tr>
+                <td><a href="@Url.Action("Lista","Proveedor")">Gestion de Proveedores</a></td>
+
+
+                <td><a href="@Url.Action("ListaTipoAlimentos","TipoAlimento")">Gestion de Tipos de Alimentos</a></td>
+
+
+
+                <td><a href="@Url.Action("ListaBancos","Banco")">Gestion de Bancos</a></td>
+
+
+                <td><a href="@Url.Action("ListaCategorias","CategoriaAlimento")">Gestion de Categorias de Alimentos</a></td>
+            </tr>
+        </table>
+        </main>
+</body>
+</html>

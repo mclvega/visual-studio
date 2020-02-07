@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+@model Proveedor.ViewModels.Banco.BancoVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AgregarBanco</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+    <h1>Agregar Banco</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("AgregarBanco", "Banco"))
+        {
+            <table align="center">
+
+                <tr>
+                    <td>Nombre :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Banco.Nombre)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+        </main>
+</body>
+</html>

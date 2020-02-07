@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="es" >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="~/css/listaTipoAlimento.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Lista de Tipos de Alimentos</title>
+</head>
+<body>
+    <header>
+        <a class="atras" href="@Url.Action("Home","Home")">
+            <img width="60" src="http://colegiocampestresandiego.edu.co/images/UltimosProyectos/flecha_atras.png" alt="Atras" />
+        </a>
+        <h1>Lista de Tipos Alimentos</h1>
+        <a class="add" href="@Url.Action("AgregarTipoAlimentos","TipoAlimento")">
+            <img width="30" src="https://jorgeguerrerogarcia.com/wp-content/uploads/2016/08/plus-5-xxl.png" alt="Agregar" />
+            Agregar Tipo Alimento
+        </a>
+    </header>
+    <main>
+        <ul>
+            <table align="center">
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                </tr>
+                @foreach (var t in ViewBag.listaTipoAlimentos)
+                {
+                    <tr class="t">
+
+                        <td  class="t">@t.Nombre</td>
+                        <td  class="t">@t.Descripcion</td>
+                        <td><a href="@Url.Action("EliminarTipoAlimentos","TipoAlimento",new { codigo=t.Codigo })">
+    <img width="40" src="http://contraloriadelmagdalena.gov.co/contratacion/imagenes/botones/eliminar.png" alt="Eliminar" />
+</a></td>
+
+                    </tr>
+                }
+            </table>
+        </ul>
+    </main>
+    
+   
+</body>
+</html>

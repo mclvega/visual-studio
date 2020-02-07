@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+@model Proveedor.ViewModels.Sucursal.SucursalVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar Sucursal</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+        <h1>Editar Sucursal</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("EditarSucursal", "Sucursal"))
+        {
+            <table align="center">
+                <tr>
+                    <td>Rut :</td>
+                    <td>
+                        @Html.ValueFor(model => model.Sucursal.Rut)
+
+                        @Html.HiddenFor(model => model.Sucursal.Rut)
+                        @Html.HiddenFor(model => model.Sucursal.Activo)
+                        @Html.HiddenFor(model => model.Sucursal.Codigo)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Direccion :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Sucursal.Direccion)</td>
+                </tr>
+                <tr>
+                    <td>Latitud :</td>
+                    <td><input required type="text" id=@Html.TextBoxFor(model => model.Sucursal.Latitud)</td>
+                </tr>
+                <tr>
+                    <td>Longitud :</td>
+                    <td><input required type="text" id=@Html.TextBoxFor(model => model.Sucursal.Longitud)</td>
+                </tr>
+                <tr>
+                    <td>Telefono :</td>
+                    <td><input required type="number" id=@Html.TextBoxFor(model => model.Sucursal.Telefono)</td>
+                </tr>
+                <input type="hidden" value="@ViewBag.c" id=@Html.TextBoxFor(model => model.Sucursal.Proveedor)
+                <tr>
+                    <td>Comuna :</td>
+                    <td>
+                        <select required id=@Html.TextBoxFor(model => model.Sucursal.Comuna)>
+                            <option value="@Html.ValueFor(model=>model.Sucursal.Comuna)">@Html.ValueFor(model => model.Sucursal.NombreComuna)</option>
+                            <option value="@Html.ValueFor(model=>model.Sucursal.Comuna)">Selecciona...</option>
+                            @foreach (var t in ViewBag.listaComunas)
+                            {
+
+                                <option value="@t.Codigo">@t.Nombre</option>
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+        </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model Proveedor.ViewModels.TipoAlimento.TipoAlimentoVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agregar Tipo de Alimentos</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+    <h1>Agregar Tipo de Alimento</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("AgregarTipoAlimentos", "TipoAlimento"))
+        {
+            <table align="center">
+
+                <tr>
+                    <td>Nombre :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.TipoAlimento.Nombre)</td>
+                </tr>
+                <tr>
+                    <td>Descripcion :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.TipoAlimento.Descripcion)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+        </main>
+</body>
+</html>

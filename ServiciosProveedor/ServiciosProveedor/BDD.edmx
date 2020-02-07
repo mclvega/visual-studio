@@ -1,0 +1,954 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IntegracionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fecha_elaboracion" Type="date" Nullable="false" />
+          <Property Name="fecha_vencimiento" Type="date" Nullable="false" />
+          <Property Name="stock" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Sucursal" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TipoAlimento" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CategoriaAlimento" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="foto" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comuna">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="provincia" Type="numeric" Precision="9" Scale="0" />
+        </EntityType>
+        <EntityType Name="DatosBancarios">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroCuenta" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+          <Property Name="Banco" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="TipoCuenta" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="Sucursal" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleAlimento">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alimento" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="categoria" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="tipoAlimento" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="telefono" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="rut" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="region" Type="numeric" Precision="9" Scale="0" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="ordinal" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Saldo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datosBancarios" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="monto" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="telefono" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="proveedor" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="comuna" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoAlimento">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCuenta">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="Alimento_Sucursal_FK">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="Sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_Banco_FK">
+          <End Role="Banco" Type="Self.Banco" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="Banco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_Sucursal_FK">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="Sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_TipoCuenta_FK">
+          <End Role="TipoCuenta" Type="Self.TipoCuenta" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCuenta">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="TipoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Alimento_FK">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="alimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Categoria_FK">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Tipo_FK">
+          <End Role="TipoAlimento" Type="Self.TipoAlimento" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAlimento">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="tipoAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="CategoriaAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_TipoAlimento">
+          <End Role="TipoAlimento" Type="Self.TipoAlimento" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAlimento">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="TipoAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comuna_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="0..1" />
+          <End Role="Comuna" Type="Self.Comuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comuna">
+              <PropertyRef Name="provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saldo_DatosBancarios">
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="1" />
+          <End Role="Saldo" Type="Self.Saldo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatosBancarios">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Saldo">
+              <PropertyRef Name="datosBancarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursal_Comunas">
+          <End Role="Comuna" Type="Self.Comuna" Multiplicity="1" />
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comuna">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="comuna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sucursal_Prov_FK">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntegracionModelStoreContainer">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comuna" EntityType="Self.Comuna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosBancarios" EntityType="Self.DatosBancarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleAlimento" EntityType="Self.DetalleAlimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saldo" EntityType="Self.Saldo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoAlimento" EntityType="Self.TipoAlimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoCuenta" EntityType="Self.TipoCuenta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Alimento_Sucursal_FK" Association="Self.Alimento_Sucursal_FK">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_Banco_FK" Association="Self.DatosBancarios_Banco_FK">
+            <End Role="Banco" EntitySet="Banco" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_Sucursal_FK" Association="Self.DatosBancarios_Sucursal_FK">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_TipoCuenta_FK" Association="Self.DatosBancarios_TipoCuenta_FK">
+            <End Role="TipoCuenta" EntitySet="TipoCuenta" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Alimento_FK" Association="Self.DetalleAlimento_Alimento_FK">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Categoria_FK" Association="Self.DetalleAlimento_Categoria_FK">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Tipo_FK" Association="Self.DetalleAlimento_Tipo_FK">
+            <End Role="TipoAlimento" EntitySet="TipoAlimento" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_Categoria" Association="Self.FK_Alimento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_TipoAlimento" Association="Self.FK_Alimento_TipoAlimento">
+            <End Role="TipoAlimento" EntitySet="TipoAlimento" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comuna_Provincia" Association="Self.FK_Comuna_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Comuna" EntitySet="Comuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Region" Association="Self.FK_Provincia_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saldo_DatosBancarios" Association="Self.FK_Saldo_DatosBancarios">
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+            <End Role="Saldo" EntitySet="Saldo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursal_Comunas" Association="Self.FK_Sucursal_Comunas">
+            <End Role="Comuna" EntitySet="Comuna" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="Sucursal_Prov_FK" Association="Self.Sucursal_Prov_FK">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IntegracionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fecha_elaboracion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="stock" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Sucursal" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TipoAlimento" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CategoriaAlimento" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sucursal1" Relationship="Self.Alimento_Sucursal_FK" FromRole="Alimento" ToRole="Sucursal" />
+          <NavigationProperty Name="DetalleAlimento" Relationship="Self.DetalleAlimento_Alimento_FK" FromRole="Alimento" ToRole="DetalleAlimento" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Alimento_Categoria" FromRole="Alimento" ToRole="Categoria" />
+          <NavigationProperty Name="TipoAlimento1" Relationship="Self.FK_Alimento_TipoAlimento" FromRole="Alimento" ToRole="TipoAlimento" />
+        </EntityType>
+        <EntityType Name="Banco">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DatosBancarios" Relationship="Self.DatosBancarios_Banco_FK" FromRole="Banco" ToRole="DatosBancarios" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Alimento_Categoria" FromRole="Categoria" ToRole="Alimento" />
+          <NavigationProperty Name="DetalleAlimento" Relationship="Self.DetalleAlimento_Categoria_FK" FromRole="Categoria" ToRole="DetalleAlimento" />
+        </EntityType>
+        <EntityType Name="Comuna">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="provincia" Type="Decimal" Precision="9" Scale="0" />
+          <NavigationProperty Name="Provincia1" Relationship="Self.FK_Comuna_Provincia" FromRole="Comuna" ToRole="Provincia" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Sucursal_Comunas" FromRole="Comuna" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="DatosBancarios">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroCuenta" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+          <Property Name="Banco" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="TipoCuenta" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="Sucursal" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Banco1" Relationship="Self.DatosBancarios_Banco_FK" FromRole="DatosBancarios" ToRole="Banco" />
+          <NavigationProperty Name="Sucursal1" Relationship="Self.DatosBancarios_Sucursal_FK" FromRole="DatosBancarios" ToRole="Sucursal" />
+          <NavigationProperty Name="TipoCuenta1" Relationship="Self.DatosBancarios_TipoCuenta_FK" FromRole="DatosBancarios" ToRole="TipoCuenta" />
+          <NavigationProperty Name="Saldo" Relationship="Self.FK_Saldo_DatosBancarios" FromRole="DatosBancarios" ToRole="Saldo" />
+        </EntityType>
+        <EntityType Name="DetalleAlimento">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alimento" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="categoria" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="tipoAlimento" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Alimento1" Relationship="Self.DetalleAlimento_Alimento_FK" FromRole="DetalleAlimento" ToRole="Alimento" />
+          <NavigationProperty Name="Categoria1" Relationship="Self.DetalleAlimento_Categoria_FK" FromRole="DetalleAlimento" ToRole="Categoria" />
+          <NavigationProperty Name="TipoAlimento1" Relationship="Self.DetalleAlimento_Tipo_FK" FromRole="DetalleAlimento" ToRole="TipoAlimento" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="rut" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.Sucursal_Prov_FK" FromRole="Proveedor" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="region" Type="Decimal" Precision="9" Scale="0" />
+          <NavigationProperty Name="Comuna" Relationship="Self.FK_Comuna_Provincia" FromRole="Provincia" ToRole="Comuna" />
+          <NavigationProperty Name="Region1" Relationship="Self.FK_Provincia_Region" FromRole="Provincia" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ordinal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Provincia_Region" FromRole="Region" ToRole="Provincia" />
+        </EntityType>
+        <EntityType Name="Saldo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datosBancarios" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="monto" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DatosBancarios1" Relationship="Self.FK_Saldo_DatosBancarios" FromRole="Saldo" ToRole="DatosBancarios" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="proveedor" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="comuna" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="latitud" Type="Double" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.Alimento_Sucursal_FK" FromRole="Sucursal" ToRole="Alimento" />
+          <NavigationProperty Name="Comuna1" Relationship="Self.FK_Sucursal_Comunas" FromRole="Sucursal" ToRole="Comuna" />
+          <NavigationProperty Name="DatosBancarios" Relationship="Self.DatosBancarios_Sucursal_FK" FromRole="Sucursal" ToRole="DatosBancarios" />
+          <NavigationProperty Name="Proveedor1" Relationship="Self.Sucursal_Prov_FK" FromRole="Sucursal" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="TipoAlimento">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Alimento_TipoAlimento" FromRole="TipoAlimento" ToRole="Alimento" />
+          <NavigationProperty Name="DetalleAlimento" Relationship="Self.DetalleAlimento_Tipo_FK" FromRole="TipoAlimento" ToRole="DetalleAlimento" />
+        </EntityType>
+        <EntityType Name="TipoCuenta">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DatosBancarios" Relationship="Self.DatosBancarios_TipoCuenta_FK" FromRole="TipoCuenta" ToRole="DatosBancarios" />
+        </EntityType>
+        <Association Name="Alimento_Sucursal_FK">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="Sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Alimento_FK">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="alimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="CategoriaAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_TipoAlimento">
+          <End Role="TipoAlimento" Type="Self.TipoAlimento" Multiplicity="1" />
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAlimento">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="TipoAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_Banco_FK">
+          <End Role="Banco" Type="Self.Banco" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="Banco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Categoria_FK">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comuna_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="0..1" />
+          <End Role="Comuna" Type="Self.Comuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comuna">
+              <PropertyRef Name="provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursal_Comunas">
+          <End Role="Comuna" Type="Self.Comuna" Multiplicity="1" />
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comuna">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="comuna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_Sucursal_FK">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="Sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DatosBancarios_TipoCuenta_FK">
+          <End Role="TipoCuenta" Type="Self.TipoCuenta" Multiplicity="1" />
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCuenta">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DatosBancarios">
+              <PropertyRef Name="TipoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saldo_DatosBancarios">
+          <End Role="DatosBancarios" Type="Self.DatosBancarios" Multiplicity="1" />
+          <End Role="Saldo" Type="Self.Saldo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatosBancarios">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Saldo">
+              <PropertyRef Name="datosBancarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetalleAlimento_Tipo_FK">
+          <End Role="TipoAlimento" Type="Self.TipoAlimento" Multiplicity="1" />
+          <End Role="DetalleAlimento" Type="Self.DetalleAlimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAlimento">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DetalleAlimento">
+              <PropertyRef Name="tipoAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sucursal_Prov_FK">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Sucursal">
+              <PropertyRef Name="proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntegracionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" />
+          <EntitySet Name="Banco" EntityType="Self.Banco" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Comuna" EntityType="Self.Comuna" />
+          <EntitySet Name="DatosBancarios" EntityType="Self.DatosBancarios" />
+          <EntitySet Name="DetalleAlimento" EntityType="Self.DetalleAlimento" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <EntitySet Name="Saldo" EntityType="Self.Saldo" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
+          <EntitySet Name="TipoAlimento" EntityType="Self.TipoAlimento" />
+          <EntitySet Name="TipoCuenta" EntityType="Self.TipoCuenta" />
+          <AssociationSet Name="Alimento_Sucursal_FK" Association="Self.Alimento_Sucursal_FK">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Alimento_FK" Association="Self.DetalleAlimento_Alimento_FK">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_Categoria" Association="Self.FK_Alimento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_TipoAlimento" Association="Self.FK_Alimento_TipoAlimento">
+            <End Role="TipoAlimento" EntitySet="TipoAlimento" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_Banco_FK" Association="Self.DatosBancarios_Banco_FK">
+            <End Role="Banco" EntitySet="Banco" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Categoria_FK" Association="Self.DetalleAlimento_Categoria_FK">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comuna_Provincia" Association="Self.FK_Comuna_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Comuna" EntitySet="Comuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursal_Comunas" Association="Self.FK_Sucursal_Comunas">
+            <End Role="Comuna" EntitySet="Comuna" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_Sucursal_FK" Association="Self.DatosBancarios_Sucursal_FK">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="DatosBancarios_TipoCuenta_FK" Association="Self.DatosBancarios_TipoCuenta_FK">
+            <End Role="TipoCuenta" EntitySet="TipoCuenta" />
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saldo_DatosBancarios" Association="Self.FK_Saldo_DatosBancarios">
+            <End Role="DatosBancarios" EntitySet="DatosBancarios" />
+            <End Role="Saldo" EntitySet="Saldo" />
+          </AssociationSet>
+          <AssociationSet Name="DetalleAlimento_Tipo_FK" Association="Self.DetalleAlimento_Tipo_FK">
+            <End Role="TipoAlimento" EntitySet="TipoAlimento" />
+            <End Role="DetalleAlimento" EntitySet="DetalleAlimento" />
+          </AssociationSet>
+          <AssociationSet Name="Sucursal_Prov_FK" Association="Self.Sucursal_Prov_FK">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Region" Association="Self.FK_Provincia_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IntegracionModelStoreContainer" CdmEntityContainer="IntegracionEntities">
+          <EntitySetMapping Name="Alimento">
+            <EntityTypeMapping TypeName="IntegracionModel.Alimento">
+              <MappingFragment StoreEntitySet="Alimento">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="fecha_elaboracion" ColumnName="fecha_elaboracion" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="TipoAlimento" ColumnName="TipoAlimento" />
+                <ScalarProperty Name="CategoriaAlimento" ColumnName="CategoriaAlimento" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banco">
+            <EntityTypeMapping TypeName="IntegracionModel.Banco">
+              <MappingFragment StoreEntitySet="Banco">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="IntegracionModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comuna">
+            <EntityTypeMapping TypeName="IntegracionModel.Comuna">
+              <MappingFragment StoreEntitySet="Comuna">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosBancarios">
+            <EntityTypeMapping TypeName="IntegracionModel.DatosBancarios">
+              <MappingFragment StoreEntitySet="DatosBancarios">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleAlimento">
+            <EntityTypeMapping TypeName="IntegracionModel.DetalleAlimento">
+              <MappingFragment StoreEntitySet="DetalleAlimento">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="alimento" ColumnName="alimento" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="tipoAlimento" ColumnName="tipoAlimento" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="IntegracionModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="IntegracionModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="region" ColumnName="region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="IntegracionModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ordinal" ColumnName="ordinal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saldo">
+            <EntityTypeMapping TypeName="IntegracionModel.Saldo">
+              <MappingFragment StoreEntitySet="Saldo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="datosBancarios" ColumnName="datosBancarios" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="IntegracionModel.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+                <ScalarProperty Name="comuna" ColumnName="comuna" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAlimento">
+            <EntityTypeMapping TypeName="IntegracionModel.TipoAlimento">
+              <MappingFragment StoreEntitySet="TipoAlimento">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoCuenta">
+            <EntityTypeMapping TypeName="IntegracionModel.TipoCuenta">
+              <MappingFragment StoreEntitySet="TipoCuenta">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

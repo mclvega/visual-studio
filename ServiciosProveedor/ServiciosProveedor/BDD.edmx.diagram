@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="31fb4fa145a3493e97f9aa2ceb24ce25" Name="Diagram1">
+        <EntityTypeShape EntityType="IntegracionModel.Alimento" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Banco" Width="1.5" PointX="10.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Categoria" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Comuna" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.DatosBancarios" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.DetalleAlimento" Width="1.5" PointX="15" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Proveedor" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Provincia" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Region" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Saldo" Width="1.5" PointX="15" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.Sucursal" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.TipoAlimento" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntegracionModel.TipoCuenta" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="IntegracionModel.Alimento_Sucursal_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DetalleAlimento_Alimento_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Alimento_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Alimento_TipoAlimento" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DatosBancarios_Banco_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DetalleAlimento_Categoria_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Comuna_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Sucursal_Comunas" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DatosBancarios_Sucursal_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DatosBancarios_TipoCuenta_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Saldo_DatosBancarios" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.DetalleAlimento_Tipo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.Sucursal_Prov_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IntegracionModel.FK_Provincia_Region" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

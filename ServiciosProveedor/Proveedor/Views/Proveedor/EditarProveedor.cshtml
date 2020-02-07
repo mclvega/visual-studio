@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model Proveedor.ViewModels.Proveedor.ProveedorVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar Alimento</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+    <h1>Editar Proveedor</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("EditarProveedor", "Proveedor"))
+        {
+            <table align="center">
+                <tr>
+                    <td>Rut :</td>
+                    <td>
+                        @Html.ValueFor(model => model.Proveedor.Rut)
+                        @Html.HiddenFor(model => model.Proveedor.Rut)
+                        @Html.HiddenFor(model => model.Proveedor.Codigo)
+                        @Html.HiddenFor(model => model.Proveedor.Activo)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombre :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Proveedor.Nombre)</td>
+                </tr>
+                <tr>
+                    <td>Usuario :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Proveedor.Usuario)</td>
+                </tr>
+                <tr>
+                    <td>Contraseña :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Proveedor.Pass)</td>
+                </tr>
+                <tr>
+                    <td>Correo :</td>
+                    <td><input required type="email" id=@Html.TextBoxFor(model => model.Proveedor.Correo)</td>
+                </tr>
+                <tr>
+                    <td>Telefono :</td>
+                    <td><input required type="number" id=@Html.TextBoxFor(model => model.Proveedor.Telefono)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+        </main>
+</body>
+</html>

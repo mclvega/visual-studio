@@ -1,0 +1,52 @@
+﻿
+body {
+    background-color: #092845;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #F3F3F3;
+}
+
+    header a {
+        display: inline-table;
+        margin-left: 3%;
+        margin-right: 30%;
+    }
+
+h1 {
+    display: inline-table;
+    text-align: center;
+}
+
+main table {
+    background-color: #D29524;
+    color: white;
+    text-align: center;
+}
+
+    main table th {
+        border-radius: 7px;
+        border-color: white;
+    }
+
+    main table td {
+        border-radius: 7px;
+        border-color: white;
+    }
+
+
+
+td:hover {
+    background-color: #003462;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    margin-left: 5%;
+    color: white;
+}
+

@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista de Sucursales</title>
+    <link rel="stylesheet" type="text/css" href="~/css/listaSucursal.css">
+</head>
+<body>
+    <header>
+        <a class="atras" href="@Url.Action("Lista","Proveedor",new { c=ViewBag.c })">
+            <img width="60" src="http://colegiocampestresandiego.edu.co/images/UltimosProyectos/flecha_atras.png" alt="Atras" />
+
+        </a>
+        <h1>Lista de Sucursales</h1>
+    </header>
+    <main>
+        <ul>
+            <table align="center">
+                <tr>
+                    <th>Opciones</th>
+                    <th>Rut</th>
+                    <th>Nombre Proveedor</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Comuna</th>
+                    <th>Datos Bancarios</th>
+                    <th>Alimentos</th>
+                </tr>
+                @foreach (var t in ViewBag.listaSucursal)
+                {
+
+                    <tr class="t">
+                        <td>
+                            <a href="@Url.Action("EliminarSucursal","Sucursal",new { rut=t.Rut })">
+                                <img width="40" src="http://contraloriadelmagdalena.gov.co/contratacion/imagenes/botones/eliminar.png" alt="Eliminar" />
+                            </a>
+                            <a href="@Url.Action("Editar","Sucursal",new { rut=t.Rut })">
+                                <img width="30" src="https://cdn.pixabay.com/photo/2017/06/06/00/33/edit-icon-2375785_960_720.png" alt="Editar" />
+                            </a>
+                        </td>
+                        <td class="t">@t.Rut</td>
+                        <td class="t">@t.NombreProveedor</td>
+                        <td class="t">@t.Direccion</td>
+                        <td class="t">@t.Telefono</td>
+                        <td class="t">@t.NombreComuna</td>
+                        <td>
+                            <a href="@Url.Action("Lista","DatosBancarios",new { c=t.Codigo,pro=t.Proveedor })">
+                                <img width="30" src="http://www.inspiri.es/wp-content/uploads/2013/03/lista.png" alt="Listar" />Listar
+                            </a>
+                            <a href="@Url.Action("AgregarDatosBancarios","DatosBancarios",new { c=t.Codigo,p=t.Proveedor })">
+                                <img width="30" src="https://jorgeguerrerogarcia.com/wp-content/uploads/2016/08/plus-5-xxl.png" alt="Agregar" />Agregar
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Lista","Alimento",new { c=t.Codigo,pro=t.Proveedor })">
+                                <img width="30" src="http://www.inspiri.es/wp-content/uploads/2013/03/lista.png" alt="Listar" />Listar
+                            </a>
+                            <a href="@Url.Action("Agregar","Alimento",new { c=t.Codigo,p=t.Proveedor })">
+                                <img width="30" src="https://jorgeguerrerogarcia.com/wp-content/uploads/2016/08/plus-5-xxl.png" alt="Agregar" />Agregar
+                            </a>
+                        </td>
+
+
+                    </tr>
+                }
+            </table>
+        </ul>
+    </main>
+    
+   
+</body>
+</html>

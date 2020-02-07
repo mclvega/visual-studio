@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model Proveedor.ViewModels.Alimento.AlimentoVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar Alimento</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+
+        <h1>Editar Alimentos</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("EditarAlimento", "Alimento"))
+        {
+            <table align="center">
+
+                <tr>
+                    <td>Nombre :</td>
+                    <td>
+                        @Html.ValueFor(model => model.Alimento.Nombre)
+                        @Html.HiddenFor(model => model.Alimento.Nombre)
+                        @Html.HiddenFor(model => model.Alimento.Codigo)
+                        @Html.HiddenFor(model => model.Alimento.Activo)
+                        @Html.HiddenFor(model => model.Alimento.Fecha_elaboracion)
+                        @Html.HiddenFor(model => model.Alimento.Fecha_vencimiento)
+                        @Html.HiddenFor(model => model.Alimento.ProveedorC)
+                        <input type="hidden" value="@ViewBag.p" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Alimento.Sucursal)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripcion :</td>
+                    <td><input type="text" required pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Alimento.Descripcion)</td>
+                </tr>
+                <tr>
+                    <td>Foto :</td>
+                    <td><input type="text" id=@Html.TextBoxFor(model => model.Alimento.Foto)</td>
+                </tr>
+                <tr>
+                    <td>Precio :</td>
+                    <td><input type="number" min="1" pattern="^[0-9]+" required id=@Html.TextBoxFor(model => model.Alimento.Precio)</td>
+                </tr>
+                <tr>
+                    <td>Fecha Elaboracion :</td>
+                    <td>@Html.ValueFor(model => model.Alimento.Fecha_elaboracion)</td>
+                </tr>
+                <tr>
+                    <td>Fecha Vencimiento :</td>
+                    <td>@Html.ValueFor(model => model.Alimento.Fecha_vencimiento)</td>
+                </tr>
+                <tr>
+                    <td>Stock :</td>
+                    <td><input type="number" min="0" pattern="^[0-9]+" required id=@Html.TextBoxFor(model => model.Alimento.Stock)</td>
+                </tr>
+
+                <tr>
+                    <td>Categoria :</td>
+                    <td>
+                        <select required id=@Html.TextBoxFor(model => model.Alimento.CategoriaAlimento)>
+                            <option value="@Html.ValueFor(model=>model.Alimento.CategoriaAlimento)">@Html.ValueFor(model => model.Alimento.DatosCategoria)</option>
+                            <option value="@Html.ValueFor(model=>model.Alimento.CategoriaAlimento)">Selecciona...</option>
+                            @foreach (var t in ViewBag.listaCategorias)
+                            {
+                                <option value="@t.Codigo">@t.Nombre</option>
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tipo :</td>
+                    <td>
+                        <select required id="@Html.TextBoxFor(model => model.Alimento.TipoAlimento)">
+                            <option value="@Html.ValueFor(model=>model.Alimento.TipoAlimento)">@Html.ValueFor(model => model.Alimento.DatosTipo)</option>
+                            <option value="@Html.ValueFor(model=>model.Alimento.TipoAlimento)">Selecciona...</option>
+                            @foreach (var t in ViewBag.listaTipos)
+                            {
+                                <option value="@t.Codigo">@t.Nombre</option>
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+    </main>
+</body>
+</html>

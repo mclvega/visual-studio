@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+@model Proveedor.ViewModels.DatosBancarios.DatosBancariosVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AgregarDatosBancarios</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+    <h1>Agregar Datos Bancarios</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("AgregarDatosBancarios", "DatosBancarios"))
+        {
+            <table align="center">
+
+                <tr>
+                    <td>Numero de Cuenta :</td>
+                    <td><input type="number" required min="1" pattern="^[0-9]+" id=@Html.TextBoxFor(model => model.DatosBancarios.NumeroCuenta)</td>
+                </tr>
+
+                <input type="hidden" value="@ViewBag.c" id=@Html.TextBoxFor(model => model.DatosBancarios.Sucursal)
+                <input type="hidden" value="@ViewBag.pro" id=@Html.TextBoxFor(model => model.DatosBancarios.ProveedorC)
+                <tr>
+                    <td>Banco :</td>
+                    <td>
+                        <select required id=@Html.TextBoxFor(model => model.DatosBancarios.Banco)>
+
+                            @foreach (var t in ViewBag.listaBancos)
+                            {
+                                <option value="@t.Codigo">@t.Nombre</option>
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tipo de Cuenta :</td>
+                    <td>
+                        <select required id=@Html.TextBoxFor(model => model.DatosBancarios.TipoCuenta)>
+
+                            @foreach (var t in ViewBag.listaTipos)
+                            {
+                                <option value="@t.Codigo">@t.Nombre</option>
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+        </main>
+</body>
+</html>

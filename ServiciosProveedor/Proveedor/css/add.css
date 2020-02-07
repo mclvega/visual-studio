@@ -1,0 +1,29 @@
+﻿body {
+    background-color: #092845;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #F3F3F3;
+    text-align:center;
+}
+main table {
+    background-color: #003462;
+    color: white;
+    text-align: center;
+    border-radius: 7px;
+    border-color: #D29524;
+}
+h1{
+    text-align:center;
+}
+tr:hover {
+    background-color: #D29524;
+}
+input  {
+    background-color: #D29524;
+}
+select {
+    background-color: #D29524;
+}
