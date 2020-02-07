@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a90cc6523d14a5eb0bd129ed6759eea" Name="Diagram1">
+        <EntityTypeShape EntityType="mbbCementerioModel.categoria" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.dato_interes" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.detalle_dato_interes" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.detalle_factura" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.empleado" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.factura" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.fallecido" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.familiar" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.jornada_laboral" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.material" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.persona" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.sector" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.tipo_tumba" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mbbCementerioModel.tumba" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="mbbCementerioModel.fk_categoria_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_datoInteres_ddi" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_familiar_ddi" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_detfac_fal" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_detfac_fam" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_detfac_mat" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_detfac_tum" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_factura_dfa" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_jornadal_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_persona_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_persona_fal" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_tumba_fal" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_persona_fam" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_tumba_mat" ManuallyRouted="false" />
+        <AssociationConnector Association="mbbCementerioModel.fk_tumba_tdt" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

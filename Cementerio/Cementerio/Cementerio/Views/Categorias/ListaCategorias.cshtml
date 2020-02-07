@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "ListaCategorias";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista de Categorias</title>
+    <link rel="stylesheet" type="text/css" href="~/css/listaCategoria.css">
+</head>
+<body>
+    <header>
+        <a class="atras" href="@Url.Action("Index","Home")">
+            <img width="60" src="http://colegiocampestresandiego.edu.co/images/UltimosProyectos/flecha_atras.png" alt="Atras" />
+        </a>
+        <h1>Lista de Categorias</h1>
+        <a class="add" href="@Url.Action("AgregarCategoria","Categorias")"><img width="30" src="https://jorgeguerrerogarcia.com/wp-content/uploads/2016/08/plus-5-xxl.png" alt="Agregar" />Agregar Categorias </a>
+    </header>
+    <main>
+        <ul>
+            <table align="center">
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                </tr>
+                @foreach (var t in ViewBag.lista)
+                {
+                    <tr>
+
+                        <td class="t">@t.nombre</td>
+                        <td class="t">@t.descripcion</td>
+                        <td>
+                            <a href="@Url.Action("EliminarCategoria","Categorias",new { nombre=t.nombre })">
+                                <img width="40" src="http://contraloriadelmagdalena.gov.co/contratacion/imagenes/botones/eliminar.png" alt="Eliminar" />
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </ul>
+    </main>
+
+
+</body>
+</html>

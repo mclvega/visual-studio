@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "AgregarTumba";
+}
+@model Cementerio.ViewModels.Tumbas.TumbaVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agregar Tumbas</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+        <h1>Agregar Tumbas</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("AgregarTumba", "Tumbas"))
+        {
+        <table align="center">
+
+            <tr>
+                <td>Rut :</td>
+                <td><input required type="text" id=@Html.TextBoxFor(model => model.Tumba.fallecido_rut)</td>
+            </tr>
+            <tr>
+                <td>Nombre :</td>
+                <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Tumba.fallecido_nombre)</td>
+            </tr>
+            <tr>
+                <td>Apellido Paterno :</td>
+                <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Tumba.fallecido_apellidoPaterno)</td>
+            </tr>
+            <tr>
+                <td>Apellido Materno  :</td>
+                <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Tumba.fallecido_apellidoMaterno)</td>
+            </tr>
+            <tr>
+                <td>Edad :</td>
+                <td><input required type="number" id=@Html.TextBoxFor(model => model.Tumba.fallecido_edad)</td>
+            </tr>
+            <tr>
+                <td>Tipo de Tumba :</td>
+                <td>
+                    <select required id=@Html.TextBoxFor(model => model.Tumba.tipo_tumba_id)>
+
+                        @foreach (var t in ViewBag.listaTipo)
+                        {
+                            <option value="@t.id">@t.nombre</option>
+                        }
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Material de la Tumba :</td>
+                <td>
+                    <select required id=@Html.TextBoxFor(model => model.Tumba.material_id)>
+
+                        @foreach (var t in ViewBag.listaMaterial)
+                        {
+                            <option value="@t.id">@t.nombre</option>
+                        }
+
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Guardar" /></td>
+            </tr>
+        </table>
+        }
+    </main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "EditarFallecido";
+}
+@model Cementerio.ViewModels.Personas.FallecidoVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar Fallecidos</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+        <h1>Editar Fallecidos</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("EditarFallecido", "Fallecidos"))
+        {
+        <table>
+
+            <tr>
+                <td>Rut :</td>
+                <td>
+                    @Html.HiddenFor(model => model.Fallecido.id)
+                    @Html.HiddenFor(model => model.Fallecido.persona_id)
+                    <input required type="text" id=@Html.TextBoxFor(model => model.Fallecido.rut)
+                </td>
+            </tr>
+            <tr>
+                <td>Nombre :</td>
+                <td>
+
+                    <input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Fallecido.nombre)
+                </td>
+            </tr>
+            <tr>
+                <td>Apellido Paterno :</td>
+                <td>
+
+                    <input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Fallecido.apellidoPaterno)
+                </td>
+            </tr>
+            <tr>
+                <td>Apellido Materno :</td>
+                <td>
+
+                    <input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Fallecido.apellidoMaterno)
+                </td>
+            </tr>
+            <tr>
+                <td>Edad :</td>
+                <td>
+
+                    <input required type="number"  id=@Html.TextBoxFor(model => model.Fallecido.edad)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Guardar" /></td>
+            </tr>
+        </table>
+        }
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Inicio</h1>
+    <table>
+        <tr>
+            <td><a href="@Url.Action("ListaCategorias","Categorias")">Categorias</a></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("ListaFallecidos","Fallecidos")">Fallecidos</a></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("ListarFamiliares","Familiar")">Familiar</a></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("ListarTumbas","Tumbas")">Listar Tumbas</a></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("AgregarTumba","Tumbas")">Crear Facturas</a></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("ListarFacturas","Facturas")">Listar Facturas</a></td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

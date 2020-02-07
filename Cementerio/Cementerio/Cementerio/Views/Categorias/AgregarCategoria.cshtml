@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AgregarCategoria";
+}
+
+@model Cementerio.ViewModels.Categorias.CategoriaVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AgregarCategoria</title>
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+</head>
+<body>
+    <header>
+        <h1>Agregar Categoria</h1>
+    </header>
+    <main>
+        @using (Html.BeginForm("AgregarCategoria", "Categorias"))
+        {
+            <table align="center">
+
+                <tr>
+                    <td>Nombre :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Categoria.nombre)</td>
+                </tr>
+                <tr>
+                    <td>Descripcion :</td>
+                    <td><input required type="text" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" id=@Html.TextBoxFor(model => model.Categoria.descripcion)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Guardar" /></td>
+                </tr>
+            </table>
+        }
+    </main>
+</body>
+</html>
